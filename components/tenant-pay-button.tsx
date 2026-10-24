@@ -14,7 +14,7 @@ interface TenantPayButtonProps {
 export function TenantPayButton({
   leaseId,
   outstandingSen,
-  isAllowed = true,
+  isAllowed = false,
   assignedTenantName,
 }: TenantPayButtonProps) {
   const router = useRouter()

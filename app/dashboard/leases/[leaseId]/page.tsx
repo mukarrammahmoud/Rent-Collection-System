@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getPrisma } from '@/lib/auth'
+import { getPrisma, getCurrentUserContext } from '@/lib/auth'
 import { invoiceStatus } from '@/lib/billing'
 import { TenantPayButton } from '@/components/tenant-pay-button'
 import { RecordPaymentModal } from '@/components/record-payment-modal'
@@ -28,6 +28,7 @@ function formatDate(d: Date | null): string {
 export default async function TenantLeaseDashboardPage({ params }: PageProps) {
   const { leaseId } = await params
   const prisma = getPrisma()
+  const currentUser = await getCurrentUserContext()
 
   const lease = await prisma.lease.findUnique({
     where: { id: leaseId },
@@ -54,6 +55,21 @@ export default async function TenantLeaseDashboardPage({ params }: PageProps) {
   if (!lease) {
     notFound()
   }
+
+  // Permission evaluation based on current user session
+  const isLeaseTenant =
+    currentUser?.kind === 'tenant' &&
+    currentUser.tenantId === lease.tenantId &&
+    currentUser.orgId === lease.orgId
+
+  const isOrgStaff =
+    currentUser?.kind === 'staff' &&
+    currentUser.orgId === lease.orgId
+
+  const isOrgManager =
+    currentUser?.kind === 'staff' &&
+    currentUser.role === 'manager' &&
+    currentUser.orgId === lease.orgId
 
   const now = new Date()
 
@@ -119,6 +135,18 @@ export default async function TenantLeaseDashboardPage({ params }: PageProps) {
           <p className="text-sm text-slate-500 dark:text-slate-400">
             Tenant: <strong className="text-slate-800 dark:text-slate-200">{lease.tenant.fullName}</strong> ({lease.tenant.email})
           </p>
+          <div className="mt-2 text-xs flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+            <span>Session:</span>
+            {currentUser ? (
+              <span className="font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">
+                {currentUser.kind === 'staff'
+                  ? `${currentUser.role.toUpperCase()} (${currentUser.orgId === lease.orgId ? lease.organization.name : 'Other Org'})`
+                  : `TENANT (${currentUser.tenantId === lease.tenantId ? 'Assigned' : 'Other Tenant'})`}
+              </span>
+            ) : (
+              <span className="text-amber-500 italic">Anonymous (Select persona in top bar)</span>
+            )}
+          </div>
         </div>
 
         {/* Actions: Tenant Pay & Staff/Manager Offline Record */}
@@ -132,8 +160,17 @@ export default async function TenantLeaseDashboardPage({ params }: PageProps) {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-200 dark:border-slate-700">
-            <TenantPayButton leaseId={lease.id} outstandingSen={outstandingSen.toString()} />
-            <RecordPaymentModal leaseId={lease.id} unitName={lease.unit.name} />
+            <TenantPayButton
+              leaseId={lease.id}
+              outstandingSen={outstandingSen.toString()}
+              isAllowed={isLeaseTenant}
+              assignedTenantName={lease.tenant.fullName}
+            />
+            <RecordPaymentModal
+              leaseId={lease.id}
+              unitName={lease.unit.name}
+              isAllowed={isOrgStaff}
+            />
           </div>
         </div>
       </div>
@@ -299,7 +336,11 @@ export default async function TenantLeaseDashboardPage({ params }: PageProps) {
                         {p.gatewayBillId || p.slipPath || 'Manual Record'}
                       </td>
                       <td className="py-3 px-4">
-                        <PaymentActions paymentId={p.id} status={p.status} />
+                        <PaymentActions
+                          paymentId={p.id}
+                          status={p.status}
+                          isManager={isOrgManager}
+                        />
                       </td>
                     </tr>
                   )

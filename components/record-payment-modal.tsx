@@ -12,7 +12,7 @@ interface RecordPaymentModalProps {
 export function RecordPaymentModal({
   leaseId,
   unitName,
-  isAllowed = true,
+  isAllowed = false,
 }: RecordPaymentModalProps) {
   const [isOpen, setIsOpen] = useState(false)
   if (!isAllowed) return null
