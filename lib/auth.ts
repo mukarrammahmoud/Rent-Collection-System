@@ -149,6 +149,49 @@ export async function getCallerContext(req: NextRequest): Promise<CallerContext>
 }
 
 /**
+ * Resolves the authenticated caller from current session cookies.
+ * Safe for use in Server Components (returns null if unauthenticated).
+ */
+export async function getCurrentUserContext(): Promise<CallerContext | null> {
+  try {
+    const supabase = await createSupabaseServerClient()
+    const { data, error } = await supabase.auth.getUser()
+    if (error || !data.user) return null
+
+    const prisma = getPrisma()
+    const userId = data.user.id
+
+    const membership = await prisma.membership.findFirst({
+      where: { userId },
+    })
+    if (membership) {
+      return {
+        kind: 'staff',
+        userId,
+        orgId: membership.orgId,
+        role: membership.role as 'manager' | 'staff',
+      }
+    }
+
+    const tenant = await prisma.tenant.findFirst({
+      where: { userId },
+    })
+    if (tenant) {
+      return {
+        kind: 'tenant',
+        userId,
+        tenantId: tenant.id,
+        orgId: tenant.orgId,
+      }
+    }
+
+    return null
+  } catch {
+    return null
+  }
+}
+
+/**
  * Requires the caller to be a staff/manager of any org.
  * Throws 403 if tenant.
  */

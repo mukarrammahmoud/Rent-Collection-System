@@ -1,0 +1,43 @@
+2026-10-24 19:25:12.929 [info] [BrowserOnboardingClientMainService] Starting browser onboarding server
+2026-10-24 19:25:12.938 [info] [BrowserOnboardingClientServer] Browser onboarding server started on http://localhost:45583
+2026-10-24 19:25:13.053 [info] update#setState idle
+2026-10-24 19:25:43.054 [info] update#setState checking for updates
+2026-10-24 19:25:43.306 [info] update#setState idle
+2026-10-24 19:26:01.672 [info] Extension host with pid 21851 exited with code: 0, signal: unknown.
+2026-10-24 19:26:01.924 [error] [UtilityProcess id: 2, type: fileWatcher, pid: 21811]: crashed with code 5 and reason 'crashed'
+2026-10-24 20:25:43.070 [info] update#setState checking for updates
+2026-10-24 20:25:43.467 [info] update#setState idle
+2026-10-24 20:44:22.352 [warning] [perf] profiling STARTED 51adff86-d5f8-4efb-85f7-229a4d619707
+2026-10-24 20:44:27.536 [warning] [perf] profiling DONE 51adff86-d5f8-4efb-85f7-229a4d619707
+2026-10-24 20:44:43.638 [warning] [perf] profiling STARTED 51adff86-d5f8-4efb-85f7-229a4d619707
+2026-10-24 20:44:48.748 [warning] [perf] profiling DONE 51adff86-d5f8-4efb-85f7-229a4d619707
+2026-10-24 20:45:04.412 [warning] [perf] profiling STARTED 51adff86-d5f8-4efb-85f7-229a4d619707
+2026-10-24 20:45:09.543 [warning] [perf] profiling DONE 51adff86-d5f8-4efb-85f7-229a4d619707
+2026-10-24 21:25:43.107 [info] update#setState checking for updates
+2026-10-24 21:25:43.620 [info] update#setState idle
+2026-10-24 22:25:43.120 [info] update#setState checking for updates
+2026-10-24 22:25:43.488 [info] update#setState idle
+2026-10-24 22:49:00.977 [warning] [perf] profiling STARTED fd3350f6-c77c-46d2-86af-c558a52c33e5
+2026-10-24 22:49:06.080 [warning] [perf] profiling DONE fd3350f6-c77c-46d2-86af-c558a52c33e5
+2026-10-24 22:49:21.950 [warning] [perf] profiling STARTED fd3350f6-c77c-46d2-86af-c558a52c33e5
+2026-10-24 22:49:27.061 [warning] [perf] profiling DONE fd3350f6-c77c-46d2-86af-c558a52c33e5
+2026-10-24 22:49:42.990 [warning] [perf] profiling STARTED fd3350f6-c77c-46d2-86af-c558a52c33e5
+2026-10-24 22:49:48.115 [warning] [perf] profiling DONE fd3350f6-c77c-46d2-86af-c558a52c33e5
+2026-10-24 23:25:43.139 [info] update#setState checking for updates
+2026-10-24 23:25:43.549 [info] update#setState idle
+2026-10-24 23:26:08.934 [warning] [perf] profiling STARTED 52ba91e9-1c8d-440d-bc84-4dd00c7e0e03
+2026-10-24 23:26:14.020 [warning] [perf] profiling DONE 52ba91e9-1c8d-440d-bc84-4dd00c7e0e03
+2026-10-24 23:53:16.136 [warning] [perf] profiling STARTED 62d6dc98-d0f5-4d92-9f6d-05dd877e5a5e
+2026-10-24 23:53:21.276 [warning] [perf] profiling DONE 62d6dc98-d0f5-4d92-9f6d-05dd877e5a5e
+2026-10-24 23:53:37.457 [warning] [perf] profiling STARTED 62d6dc98-d0f5-4d92-9f6d-05dd877e5a5e
+2026-10-24 23:53:42.563 [warning] [perf] profiling DONE 62d6dc98-d0f5-4d92-9f6d-05dd877e5a5e
+2026-10-24 23:53:58.777 [warning] [perf] profiling STARTED 62d6dc98-d0f5-4d92-9f6d-05dd877e5a5e
+2026-10-24 23:54:03.983 [warning] [perf] profiling DONE 62d6dc98-d0f5-4d92-9f6d-05dd877e5a5e
+2026-10-25 00:03:20.229 [warning] [perf] profiling STARTED ed0a2af8-e127-448a-a073-a68457ab3418
+2026-10-25 00:03:25.325 [warning] [perf] profiling DONE ed0a2af8-e127-448a-a073-a68457ab3418
+2026-10-25 00:03:41.505 [warning] [perf] profiling STARTED ed0a2af8-e127-448a-a073-a68457ab3418
+2026-10-25 00:03:46.629 [warning] [perf] profiling DONE ed0a2af8-e127-448a-a073-a68457ab3418
+2026-10-25 00:04:02.778 [warning] [perf] profiling STARTED ed0a2af8-e127-448a-a073-a68457ab3418
+2026-10-25 00:04:07.854 [warning] [perf] profiling DONE ed0a2af8-e127-448a-a073-a68457ab3418
+2026-10-25 00:25:43.154 [info] update#setState checking for updates
+2026-10-25 00:25:43.545 [info] update#setState idle

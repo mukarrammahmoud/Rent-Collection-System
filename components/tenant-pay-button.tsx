@@ -2,13 +2,21 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { createSupabaseBrowserClient } from '@/lib/supabase-browser'
 
 interface TenantPayButtonProps {
   leaseId: string
   outstandingSen: string
+  isAllowed?: boolean
+  assignedTenantName?: string
 }
 
-export function TenantPayButton({ leaseId, outstandingSen }: TenantPayButtonProps) {
+export function TenantPayButton({
+  leaseId,
+  outstandingSen,
+  isAllowed = true,
+  assignedTenantName,
+}: TenantPayButtonProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
@@ -17,27 +25,38 @@ export function TenantPayButton({ leaseId, outstandingSen }: TenantPayButtonProp
   const hasBalance = outstandingNumber > 0
 
   const handlePay = async () => {
-    if (!hasBalance) return
+    if (!isAllowed || !hasBalance) return
     setLoading(true)
     setErrorMsg(null)
 
     try {
+      const supabase = createSupabaseBrowserClient()
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+      const token = session?.access_token
+
       const res = await fetch(`/api/leases/${leaseId}/gateway-bills`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
       })
 
       const data = await res.json()
 
       if (!res.ok) {
-        if (res.status === 403) {
+        if (res.status === 404) {
           setErrorMsg(
-            'Only the tenant assigned to this lease can initiate online gateway payments. Please switch to this tenant persona in the top bar.',
+            'Tenant isolation: This lease is assigned to a different tenant or organization. Please switch to the assigned tenant persona in the top bar to pay.',
+          )
+        } else if (res.status === 403) {
+          setErrorMsg(
+            'Only the tenant assigned to this lease can initiate online gateway payments. Please switch to the tenant persona in the top bar.',
           )
         } else if (res.status === 401) {
-          setErrorMsg('You must be logged in to pay online. Please select a tenant persona above.')
+          setErrorMsg('You must be logged in to pay online. Please select the tenant persona above.')
         } else {
           setErrorMsg(data.error || 'Failed to initiate gateway payment.')
         }
@@ -60,6 +79,24 @@ export function TenantPayButton({ leaseId, outstandingSen }: TenantPayButtonProp
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}`
+
+  if (!isAllowed) {
+    return (
+      <div className="flex flex-col items-start gap-1">
+        <button
+          disabled
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-semibold text-xs bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed border border-slate-200 dark:border-slate-700"
+          title={`Only the assigned tenant (${assignedTenantName || 'tenant'}) can pay online`}
+        >
+          <span>🔒</span>
+          <span>Pay Online ({ringgitFormatted})</span>
+        </button>
+        <span className="text-[11px] text-amber-600 dark:text-amber-400">
+          Only assigned tenant ({assignedTenantName || 'tenant'}) can pay online. Switch persona above.
+        </span>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col items-start gap-2">

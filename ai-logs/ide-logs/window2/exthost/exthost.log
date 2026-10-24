@@ -1,0 +1,36 @@
+2026-10-24 19:25:51.123 [info] Extension host with pid 21851 started
+2026-10-24 19:25:51.398 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-10-24 19:25:51.495 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-10-24 19:25:51.625 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-10-24 19:25:52.092 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-10-24 19:25:53.873 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-10-24 19:25:58.882 [info] Eager extensions activated
+2026-10-24 19:25:58.901 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-10-24 19:25:58.943 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-10-24 19:25:58.954 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-10-24 19:25:59.002 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-10-24 19:26:01.616 [info] Extension host terminating: renderer closed the MessagePort
+2026-10-24 19:26:01.671 [info] Extension host with pid 21851 exiting with code 0
+2026-10-24 19:26:07.945 [info] Extension host with pid 22383 started
+2026-10-24 19:26:07.945 [info] Skipping acquiring lock for /home/mokaram/.config/Antigravity IDE/User/workspaceStorage/ce9fb07af6bb5af2478938ee3cc1a9d2.
+2026-10-24 19:26:07.997 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-10-24 19:26:08.009 [info] ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
+2026-10-24 19:26:08.100 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-10-24 19:26:08.192 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-10-24 19:26:08.317 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-10-24 19:26:08.472 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-10-24 19:26:09.746 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-10-24 19:26:13.402 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:json'
+2026-10-24 19:26:13.446 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
+2026-10-24 19:26:13.539 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
+2026-10-24 19:26:14.035 [info] Eager extensions activated
+2026-10-24 19:26:14.047 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-10-24 19:26:14.087 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-10-24 19:26:14.103 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-10-24 19:26:14.156 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-10-24 20:31:43.717 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-10-24 20:44:25.150 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-10-24 20:44:26.545 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-10-24 20:47:06.500 [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:typescript'
+2026-10-24 21:14:13.101 [info] ExtensionService#_doActivateExtension Prisma.prisma, startup: false, activationEvent: 'onLanguage:prisma'
+2026-10-24 23:34:17.549 [info] ExtensionService#_doActivateExtension vscode.simple-browser, startup: false, activationEvent: 'onOpenExternalUri:http'

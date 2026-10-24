@@ -1,0 +1,201 @@
+2026-10-24 19:25:54.568 [info] ERROR: logging before google.Init: I1024 19:25:54.567516       1 server.go:1417] Starting language server process with pid 21959
+2026-10-24 19:25:54.568 [info] ERROR: logging before google.Init: I1024 19:25:54.567778       1 server.go:395] Setting GOMAXPROCS to 4
+2026-10-24 19:25:54.578 [info] ERROR: logging before google.Init: I1024 19:25:54.575593       1 server.go:1467] Language server version: 2.5.5
+2026-10-24 19:25:54.578 [info] ERROR: logging before google.Init: I1024 19:25:54.575649       1 server.go:546] Language server will attempt to listen on host localhost
+2026-10-24 19:25:54.578 [info] ERROR: logging before google.Init: I1024 19:25:54.576433       1 server.go:561] Language server listening on random port at 44093 for HTTPS (gRPC)
+2026-10-24 19:25:54.578 [info] ERROR: logging before google.Init: I1024 19:25:54.576662       1 server.go:569] Language server listening on random port at 45361 for HTTP
+2026-10-24 19:25:55.070 [info] ERROR: logging before google.Init: I1024 19:25:55.062334       1 server.go:539] Created extension server client at port 41283
+2026-10-24 19:25:55.255 [info] ERROR: logging before google.Init: W1024 19:25:55.248201       1 defaults.go:741] failed to get cs path: cs path /usr/bin/cs invalid
+2026-10-24 19:25:55.255 [info] ERROR: logging before google.Init: I1024 19:25:55.249271       1 manager.go:98] Creating trajectory store manager with proto store and SQLite store
+2026-10-24 19:25:55.288 [info] ERROR: logging before google.Init: W1024 19:25:55.286831      61 cache.go:56] Cache(fetchBAICAdminControls): Singleflight refresh failed: admin controls not applicable
+2026-10-24 19:25:55.288 [info] ERROR: logging before google.Init: E1024 19:25:55.286890      61 errorreport.go:223] admin controls not applicable
+2026-10-24 19:25:55.288 [info] ERROR: logging before google.Init: W1024 19:25:55.286985      61 cache.go:79] Failed to refresh cache in background: admin controls not applicable
+2026-10-24 19:25:55.327 [info] ERROR: logging before google.Init: I1024 19:25:55.321654       1 server.go:2697] Auth succeeded, refreshing features and managers
+2026-10-24 19:25:58.161 [info] ERROR: logging before google.Init: I1024 19:25:58.160770      52 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x47bb9c25a9552894
+2026-10-24 19:25:58.665 [info] ERROR: logging before google.Init: I1024 19:25:58.665327      57 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x362a825d06483d66
+2026-10-24 19:25:58.685 [info] ERROR: logging before google.Init: I1024 19:25:58.683982       1 server.go:2703] State refresh took 3360ms
+2026-10-24 19:25:58.685 [info] ERROR: logging before google.Init: I1024 19:25:58.684347       1 server.go:2862] [RemoteControl] Resolved proxyServerURL: "jetski-webchannel.googleapis.com:443"
+2026-10-24 19:25:58.685 [info] ERROR: logging before google.Init: E1024 19:25:58.684369       1 server.go:2928] [RemoteControl] Cannot start connection with empty hostname.
+2026-10-24 19:25:58.685 [info] ERROR: logging before google.Init: I1024 19:25:58.684518       1 profiler.go:154] Continuous pprof profiling is disabled.
+2026-10-24 19:25:58.699 [info] (Antigravity IDE) 2026-10-24 19:25:58.696 [INFO]: Language server started
+2026-10-24 19:25:58.736 [info] ERROR: logging before google.Init: I1024 19:25:58.728350       1 server.go:2246] initialized server successfully in 4.160688264s
+2026-10-24 19:25:58.777 [info] (Antigravity IDE) 2026-10-24 19:25:58.777 [INFO]: LS lspClient started successfully
+2026-10-24 19:25:58.853 [info] ERROR: logging before google.Init: W1024 19:25:58.849101      41 mcp_manager.go:1244] Failed to write server states, eagerly loading all tools: failed to get server directory
+2026-10-24 19:25:59.591 [info] ERROR: logging before google.Init: E1024 19:25:59.590447      98 browser_context.go:179] failed to install playwright: could not install driver: could not install driver: error: got non 200 status code: 404 (404 Not Found) from https://playwright.azureedge.net/builds/driver/playwright-1.57.0-linux.zip
+2026-10-24 19:25:59.591 [info] error: got non 200 status code: 404 (404 Not Found) from https://playwright-akamai.azureedge.net/builds/driver/playwright-1.57.0-linux.zip
+2026-10-24 19:25:59.591 [info] error: got non 200 status code: 404 (404 Not Found) from https://playwright-verizon.azureedge.net/builds/driver/playwright-1.57.0-linux.zip
+2026-10-24 19:26:10.051 [info] ERROR: logging before google.Init: I1024 19:26:10.050681       1 server.go:1417] Starting language server process with pid 22614
+2026-10-24 19:26:10.052 [info] ERROR: logging before google.Init: I1024 19:26:10.050939       1 server.go:395] Setting GOMAXPROCS to 4
+2026-10-24 19:26:10.053 [info] ERROR: logging before google.Init: I1024 19:26:10.052845       1 server.go:1467] Language server version: 2.5.5
+2026-10-24 19:26:10.053 [info] ERROR: logging before google.Init: I1024 19:26:10.052875       1 server.go:546] Language server will attempt to listen on host localhost
+2026-10-24 19:26:10.053 [info] ERROR: logging before google.Init: I1024 19:26:10.053496       1 server.go:561] Language server listening on random port at 38855 for HTTPS (gRPC)
+2026-10-24 19:26:10.053 [info] ERROR: logging before google.Init: I1024 19:26:10.053698       1 server.go:569] Language server listening on random port at 39713 for HTTP
+2026-10-24 19:26:10.575 [info] ERROR: logging before google.Init: I1024 19:26:10.539522       1 server.go:539] Created extension server client at port 43971
+2026-10-24 19:26:10.685 [info] ERROR: logging before google.Init: W1024 19:26:10.685126       1 defaults.go:741] failed to get cs path: cs path /usr/bin/cs invalid
+2026-10-24 19:26:10.685 [info] ERROR: logging before google.Init: I1024 19:26:10.685186       1 manager.go:98] Creating trajectory store manager with proto store and SQLite store
+2026-10-24 19:26:10.689 [info] ERROR: logging before google.Init: W1024 19:26:10.688367     109 cache.go:56] Cache(fetchBAICAdminControls): Singleflight refresh failed: admin controls not applicable
+2026-10-24 19:26:10.689 [info] ERROR: logging before google.Init: E1024 19:26:10.688450     109 errorreport.go:223] admin controls not applicable
+2026-10-24 19:26:10.689 [info] ERROR: logging before google.Init: W1024 19:26:10.688590     109 cache.go:79] Failed to refresh cache in background: admin controls not applicable
+2026-10-24 19:26:10.702 [info] ERROR: logging before google.Init: I1024 19:26:10.701988       1 server.go:2697] Auth succeeded, refreshing features and managers
+2026-10-24 19:26:12.557 [info] ERROR: logging before google.Init: W1024 19:26:12.556818      46 mcp_manager.go:1244] Failed to write server states, eagerly loading all tools: failed to get server directory
+2026-10-24 19:26:12.599 [info] ERROR: logging before google.Init: I1024 19:26:12.598808      42 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xa2465aeeb3163a11
+2026-10-24 19:26:13.824 [info] ERROR: logging before google.Init: I1024 19:26:13.509680     105 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x9f04bca9b0d262d
+2026-10-24 19:26:13.824 [info] ERROR: logging before google.Init: I1024 19:26:13.592282       1 server.go:2703] State refresh took 2890ms
+2026-10-24 19:26:13.824 [info] ERROR: logging before google.Init: I1024 19:26:13.592815       1 server.go:2862] [RemoteControl] Resolved proxyServerURL: "jetski-webchannel.googleapis.com:443"
+2026-10-24 19:26:13.824 [info] ERROR: logging before google.Init: E1024 19:26:13.592852       1 server.go:2928] [RemoteControl] Cannot start connection with empty hostname.
+2026-10-24 19:26:13.824 [info] ERROR: logging before google.Init: I1024 19:26:13.593119       1 profiler.go:154] Continuous pprof profiling is disabled.
+2026-10-24 19:26:13.839 [info] (Antigravity IDE) 2026-10-24 19:26:13.837 [INFO]: Language server started
+2026-10-24 19:26:13.861 [info] ERROR: logging before google.Init: I1024 19:26:13.857744       1 server.go:2246] initialized server successfully in 3.806913884s
+2026-10-24 19:26:13.952 [info] (Antigravity IDE) 2026-10-24 19:26:13.952 [INFO]: LS lspClient started successfully
+2026-10-24 19:26:14.221 [info] ERROR: logging before google.Init: E1024 19:26:14.129606      68 browser_context.go:179] failed to install playwright: could not install driver: could not install driver: error: got non 200 status code: 404 (404 Not Found) from https://playwright.azureedge.net/builds/driver/playwright-1.57.0-linux.zip
+2026-10-24 19:26:14.221 [info] error: got non 200 status code: 404 (404 Not Found) from https://playwright-akamai.azureedge.net/builds/driver/playwright-1.57.0-linux.zip
+2026-10-24 19:26:14.221 [info] error: got non 200 status code: 404 (404 Not Found) from https://playwright-verizon.azureedge.net/builds/driver/playwright-1.57.0-linux.zip
+2026-10-24 19:26:30.687 [info] ERROR: logging before google.Init: E1024 19:26:30.686211      57 server.go:719] Failed to get OAuth token: failed to compute token: oauth2: "internal_failure" "Internal Error"
+2026-10-24 19:27:07.095 [info] (Antigravity IDE) 2026-10-24 19:27:07.095 [INFO]: [Terminal] Command completed: pnpm dlx shadcn@latest init --preset b2v6ZjWfII --template next --rtl --pointer exit code 0
+2026-10-24 19:31:10.545 [info] ERROR: logging before google.Init: W1024 19:31:10.544290    1562 cache.go:56] Cache(fetchBAICAdminControls): Singleflight refresh failed: admin controls not applicable
+2026-10-24 19:31:10.545 [info] ERROR: logging before google.Init: E1024 19:31:10.544392    1562 errorreport.go:223] admin controls not applicable
+2026-10-24 19:31:10.545 [info] ERROR: logging before google.Init: W1024 19:31:10.544805    1562 cache.go:79] Failed to refresh cache in background: admin controls not applicable
+2026-10-24 19:31:11.842 [info] ERROR: logging before google.Init: I1024 19:31:11.842192    1560 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xdad7174076f845e5
+2026-10-24 19:31:12.897 [info] ERROR: logging before google.Init: I1024 19:31:12.896363    1558 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x8ed65dcbf1bd38c4
+2026-10-24 19:37:11.184 [info] ERROR: logging before google.Init: I1024 19:37:11.183372    3034 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x10220a50cb2844f7
+2026-10-24 19:37:11.678 [info] ERROR: logging before google.Init: I1024 19:37:11.677758    3056 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xb2d1eeca50bf73de
+2026-10-24 19:42:39.224 [info] (Antigravity IDE) 2026-10-24 19:42:39.223 [INFO]: [Terminal] Command completed: pnpm i exit code 1
+2026-10-24 19:43:11.560 [info] ERROR: logging before google.Init: I1024 19:43:11.559819    4532 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xc2779546c3bd171
+2026-10-24 19:43:12.159 [info] ERROR: logging before google.Init: I1024 19:43:12.158887    4506 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xcb30234e6fba779f
+2026-10-24 19:48:13.024 [info] ERROR: logging before google.Init: I1024 19:48:13.023457    5728 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x4117acc6063180d6
+2026-10-24 19:54:12.637 [info] ERROR: logging before google.Init: I1024 19:54:12.636984    7163 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x30d61c26e3422a3c
+2026-10-24 19:54:13.298 [info] ERROR: logging before google.Init: I1024 19:54:13.297653    7186 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xf7cc02eccc0ddf20
+2026-10-24 20:00:13.888 [info] ERROR: logging before google.Init: I1024 20:00:13.887904    8633 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x4dd8091f7995497e
+2026-10-24 20:00:15.373 [info] ERROR: logging before google.Init: I1024 20:00:15.372435    8642 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9804b6b1e3fc2532
+2026-10-24 20:06:13.179 [info] ERROR: logging before google.Init: I1024 20:06:13.178700   10090 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x22c4306bb404f03e
+2026-10-24 20:06:14.475 [info] ERROR: logging before google.Init: I1024 20:06:14.475093   10074 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x2ba5b855a94cbec0
+2026-10-24 20:12:14.648 [info] ERROR: logging before google.Init: I1024 20:12:14.647746   11517 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x1ca6b42f929369ea
+2026-10-24 20:12:15.707 [info] ERROR: logging before google.Init: I1024 20:12:15.707186   11544 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x1294acff8568a12a
+2026-10-24 20:18:12.771 [info] ERROR: logging before google.Init: I1024 20:18:12.771338   12968 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x10d9d2b338135e38
+2026-10-24 20:18:12.809 [info] ERROR: logging before google.Init: I1024 20:18:12.808984   12987 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xba9082274a2a9efd
+2026-10-24 20:24:13.102 [info] ERROR: logging before google.Init: I1024 20:24:13.102366   14411 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x57b802034443ef67
+2026-10-24 20:24:14.634 [info] ERROR: logging before google.Init: I1024 20:24:14.633788   14471 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x79ac57c4d2d9cd1e
+2026-10-24 20:26:10.554 [info] ERROR: logging before google.Init: W1024 20:26:10.545795   14947 cache.go:56] Cache(fetchBAICAdminControls): Singleflight refresh failed: admin controls not applicable
+2026-10-24 20:26:10.554 [info] ERROR: logging before google.Init: E1024 20:26:10.554249   14947 errorreport.go:223] admin controls not applicable
+2026-10-24 20:26:10.558 [info] ERROR: logging before google.Init: W1024 20:26:10.558136   14947 cache.go:79] Failed to refresh cache in background: admin controls not applicable
+2026-10-24 20:26:12.916 [info] ERROR: logging before google.Init: I1024 20:26:12.916070   14926 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6feebb9baf0aa28
+2026-10-24 20:26:14.502 [info] ERROR: logging before google.Init: I1024 20:26:14.502024   14927 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x10015446bf7f8230
+2026-10-24 20:32:12.726 [info] ERROR: logging before google.Init: I1024 20:32:12.725886   16442 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x434709580d86a6ea
+2026-10-24 20:32:12.798 [info] ERROR: logging before google.Init: I1024 20:32:12.797826   16462 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x31a8157b77bc6fd9
+2026-10-24 20:38:12.928 [info] ERROR: logging before google.Init: I1024 20:38:12.927793   17907 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x13aee8d1d5a93a2
+2026-10-24 20:38:13.309 [info] ERROR: logging before google.Init: I1024 20:38:13.309040   17908 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xb972b60757dfe04a
+2026-10-24 20:44:13.198 [info] ERROR: logging before google.Init: I1024 20:44:13.197794   19379 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x27ca5c3e49910219
+2026-10-24 20:44:14.020 [info] ERROR: logging before google.Init: I1024 20:44:14.020738   19370 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xae73e0871fc3e15f
+2026-10-24 20:50:12.800 [info] ERROR: logging before google.Init: I1024 20:50:12.799831   20813 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x26edabf11226c124
+2026-10-24 20:50:15.106 [info] ERROR: logging before google.Init: I1024 20:50:15.105350   20843 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6ff6b5ecad0d8512
+2026-10-24 20:56:11.570 [info] ERROR: logging before google.Init: I1024 20:56:11.570051   22299 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x931a9a3b7b2782ec
+2026-10-24 20:56:11.662 [info] ERROR: logging before google.Init: I1024 20:56:11.660889   22239 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xa930339b02af16c
+2026-10-24 21:02:11.960 [info] ERROR: logging before google.Init: I1024 21:02:11.958805   23754 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x44124c2542277823
+2026-10-24 21:02:12.826 [info] ERROR: logging before google.Init: I1024 21:02:12.819006   23725 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x95a9cbc39321d8fe
+2026-10-24 21:08:11.967 [info] ERROR: logging before google.Init: I1024 21:08:11.967391   25226 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9a375b8b80f73583
+2026-10-24 21:08:14.408 [info] ERROR: logging before google.Init: I1024 21:08:14.408250   25195 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xfa598c113c54f5bc
+2026-10-24 21:14:11.500 [info] ERROR: logging before google.Init: I1024 21:14:11.500394   26623 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xfbbeab5e764840ef
+2026-10-24 21:14:12.038 [info] ERROR: logging before google.Init: I1024 21:14:12.037272   26669 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x68dad18d4dff2cbd
+2026-10-24 21:20:11.636 [info] ERROR: logging before google.Init: I1024 21:20:11.636256   28148 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x9e036b7ab0447405
+2026-10-24 21:20:13.220 [info] ERROR: logging before google.Init: I1024 21:20:13.219500   28143 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xf2759b4412df49f4
+2026-10-24 21:21:10.552 [info] ERROR: logging before google.Init: W1024 21:21:10.544464   28392 cache.go:56] Cache(fetchBAICAdminControls): Singleflight refresh failed: admin controls not applicable
+2026-10-24 21:21:10.553 [info] ERROR: logging before google.Init: E1024 21:21:10.552319   28392 errorreport.go:223] admin controls not applicable
+2026-10-24 21:21:10.554 [info] ERROR: logging before google.Init: W1024 21:21:10.554369   28392 cache.go:79] Failed to refresh cache in background: admin controls not applicable
+2026-10-24 21:21:11.180 [info] ERROR: logging before google.Init: I1024 21:21:11.179784   28391 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xda7b52f85ec63abd
+2026-10-24 21:21:11.754 [info] ERROR: logging before google.Init: I1024 21:21:11.753711   28388 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5917a4bf249d28be
+2026-10-24 21:27:13.164 [info] ERROR: logging before google.Init: I1024 21:27:13.161424   29908 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5e047e477cd008dd
+2026-10-24 21:27:13.730 [info] ERROR: logging before google.Init: I1024 21:27:13.728234   29868 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xb60a59bcc32b98b7
+2026-10-24 21:33:13.183 [info] ERROR: logging before google.Init: I1024 21:33:13.183382   31374 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x3f9349afd9cd74a9
+2026-10-24 21:33:15.255 [info] ERROR: logging before google.Init: I1024 21:33:15.255118   31375 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x8a46d32bbac52214
+2026-10-24 21:39:12.921 [info] ERROR: logging before google.Init: I1024 21:39:12.921024   32778 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x69cde6cf1bcf73c4
+2026-10-24 21:39:13.578 [info] ERROR: logging before google.Init: I1024 21:39:13.578243   32843 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x1ab5d9e06929dc5b
+2026-10-24 21:42:48.264 [info] (Antigravity IDE) 2026-10-24 21:42:48.264 [INFO]: [Terminal] Command completed: pnpm prisma generate exit code 1
+2026-10-24 21:45:12.267 [info] ERROR: logging before google.Init: I1024 21:45:12.266722   34304 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x1b6ecf6b0b45a24c
+2026-10-24 21:45:13.521 [info] ERROR: logging before google.Init: I1024 21:45:13.521467   34313 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x55f1b23aa437808f
+2026-10-24 21:51:15.547 [info] ERROR: logging before google.Init: I1024 21:51:15.546478   35780 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5513a640a2f950c2
+2026-10-24 21:51:18.306 [info] ERROR: logging before google.Init: I1024 21:51:18.306273   35758 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xebb869845489c3a4
+2026-10-24 21:57:17.270 [info] ERROR: logging before google.Init: I1024 21:57:17.270313   37215 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x3080d58ca290c9a7
+2026-10-24 21:57:25.021 [info] ERROR: logging before google.Init: I1024 21:57:25.021302   37238 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xce0c2dbee26dd901
+2026-10-24 22:03:12.917 [info] ERROR: logging before google.Init: I1024 22:03:12.916879   38671 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xb513edd765548e8f
+2026-10-24 22:03:15.279 [info] ERROR: logging before google.Init: I1024 22:03:15.278208   38692 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xe69448b8c00477aa
+2026-10-24 22:09:13.001 [info] ERROR: logging before google.Init: I1024 22:09:13.000344   40152 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x84c5bc5e7af6eb19
+2026-10-24 22:09:13.089 [info] ERROR: logging before google.Init: I1024 22:09:13.088212   40168 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x75db9eaaa8e54d16
+2026-10-24 22:09:19.219 [info] (Antigravity IDE) 2026-10-24 22:09:19.217 [INFO]: [Terminal] Command completed: pnpm run seed exit code 1
+2026-10-24 22:13:29.131 [info] (Antigravity IDE) 2026-10-24 22:13:29.131 [INFO]: [Terminal] Command completed: pnpm run seed exit code 1
+2026-10-24 22:13:54.344 [info] (Antigravity IDE) 2026-10-24 22:13:54.344 [INFO]: [Terminal] Command completed: pnpm i exit code 1
+2026-10-24 22:14:03.650 [info] (Antigravity IDE) 2026-10-24 22:14:03.650 [INFO]: [Terminal] Command completed: npm approve-builds exit code 1
+2026-10-24 22:14:36.437 [info] (Antigravity IDE) 2026-10-24 22:14:36.437 [INFO]: [Terminal] Command completed: pnpm approve-builds exit code 0
+2026-10-24 22:14:52.337 [info] (Antigravity IDE) 2026-10-24 22:14:52.337 [INFO]: [Terminal] Command completed: pnpm i exit code 0
+2026-10-24 22:14:58.376 [info] (Antigravity IDE) 2026-10-24 22:14:58.376 [INFO]: [Terminal] Command completed: pnpm run seed exit code 0
+2026-10-24 22:15:14.221 [info] ERROR: logging before google.Init: I1024 22:15:14.220839   41641 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xd32d2aeabaf85fc3
+2026-10-24 22:15:15.698 [info] ERROR: logging before google.Init: I1024 22:15:15.697629   41599 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9933f36ec99a4740
+2026-10-24 22:16:10.553 [info] ERROR: logging before google.Init: W1024 22:16:10.551982   41893 cache.go:56] Cache(fetchBAICAdminControls): Singleflight refresh failed: admin controls not applicable
+2026-10-24 22:16:10.554 [info] ERROR: logging before google.Init: E1024 22:16:10.553209   41893 errorreport.go:223] admin controls not applicable
+2026-10-24 22:16:10.557 [info] ERROR: logging before google.Init: W1024 22:16:10.557645   41893 cache.go:79] Failed to refresh cache in background: admin controls not applicable
+2026-10-24 22:16:12.258 [info] ERROR: logging before google.Init: I1024 22:16:12.257860   41892 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x121a7f728808307f
+2026-10-24 22:16:13.375 [info] ERROR: logging before google.Init: I1024 22:16:13.375019   41825 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xae99dd36ca136f09
+2026-10-24 22:21:13.277 [info] (Antigravity IDE) 2026-10-24 22:21:13.277 [INFO]: [Terminal] Command completed: pnpm run seed exit code 0
+2026-10-24 22:21:50.567 [info] (Antigravity IDE) 2026-10-24 22:21:50.567 [INFO]: [Terminal] Command completed: pnpm add pg exit code 0
+2026-10-24 22:22:13.048 [info] ERROR: logging before google.Init: I1024 22:22:13.048507   43245 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5d535e97411e095
+2026-10-24 22:22:14.892 [info] ERROR: logging before google.Init: I1024 22:22:14.892494   43348 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x4eb61197d0ea4d16
+2026-10-24 22:22:32.675 [info] (Antigravity IDE) 2026-10-24 22:22:32.674 [INFO]: [Terminal] Command completed: npm run seed exit code 1
+2026-10-24 22:28:12.974 [info] ERROR: logging before google.Init: I1024 22:28:12.965262   44832 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xdb5c8a06f2d05834
+2026-10-24 22:28:13.959 [info] ERROR: logging before google.Init: I1024 22:28:13.959358   44817 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xaad49ea0d6763d92
+2026-10-24 22:34:12.151 [info] ERROR: logging before google.Init: I1024 22:34:12.151322   46292 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7590aae57fe76470
+2026-10-24 22:34:13.119 [info] ERROR: logging before google.Init: I1024 22:34:13.119427   46289 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x31ce0a62d4f44b91
+2026-10-24 22:40:13.408 [info] ERROR: logging before google.Init: I1024 22:40:13.407941   47750 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xc841b69eadff9b6c
+2026-10-24 22:40:14.825 [info] ERROR: logging before google.Init: I1024 22:40:14.825050   47783 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x813d3d889ee996ce
+2026-10-24 22:46:12.167 [info] ERROR: logging before google.Init: I1024 22:46:12.167256   49211 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x9bb5c6a1dfdfc872
+2026-10-24 22:46:12.860 [info] ERROR: logging before google.Init: I1024 22:46:12.860106   49250 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xb2fa2cb5b1b55e41
+2026-10-24 22:52:11.746 [info] ERROR: logging before google.Init: I1024 22:52:11.746047   50685 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x38bd6873537db296
+2026-10-24 22:52:13.535 [info] ERROR: logging before google.Init: I1024 22:52:13.535360   50695 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x59e40ca0183c4c84
+2026-10-24 22:58:14.945 [info] ERROR: logging before google.Init: I1024 22:58:14.944895   52148 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x6b229ade02a1e1c
+2026-10-24 22:58:16.912 [info] ERROR: logging before google.Init: I1024 22:58:16.912160   52177 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x15a8ccd00ff85b51
+2026-10-24 23:04:12.911 [info] ERROR: logging before google.Init: I1024 23:04:12.910768   53611 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xce409190bc23eed5
+2026-10-24 23:04:13.735 [info] ERROR: logging before google.Init: I1024 23:04:13.735139   53635 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x47a14013c8b37714
+2026-10-24 23:10:15.659 [info] ERROR: logging before google.Init: I1024 23:10:15.658043   55077 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x168fd901be924bda
+2026-10-24 23:10:15.928 [info] ERROR: logging before google.Init: I1024 23:10:15.928109   55113 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6b002d81b4280e18
+2026-10-24 23:11:10.545 [info] ERROR: logging before google.Init: W1024 23:11:10.544442   55352 cache.go:56] Cache(fetchBAICAdminControls): Singleflight refresh failed: admin controls not applicable
+2026-10-24 23:11:10.546 [info] ERROR: logging before google.Init: E1024 23:11:10.545699   55352 errorreport.go:223] admin controls not applicable
+2026-10-24 23:11:10.549 [info] ERROR: logging before google.Init: W1024 23:11:10.547524   55352 cache.go:79] Failed to refresh cache in background: admin controls not applicable
+2026-10-24 23:11:12.023 [info] ERROR: logging before google.Init: I1024 23:11:12.023785   55348 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xbe5c3128b3b0adfd
+2026-10-24 23:11:12.916 [info] ERROR: logging before google.Init: I1024 23:11:12.915444   55348 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x97841d95df8de741
+2026-10-24 23:17:13.025 [info] ERROR: logging before google.Init: I1024 23:17:13.025316   56833 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x6267b9a25799dfff
+2026-10-24 23:17:13.870 [info] ERROR: logging before google.Init: I1024 23:17:13.869317   56805 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x276f7d1fbacc482a
+2026-10-24 23:23:12.951 [info] ERROR: logging before google.Init: I1024 23:23:12.950677   58291 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x62a9de7e721c1d01
+2026-10-24 23:23:13.927 [info] ERROR: logging before google.Init: I1024 23:23:13.926527   58286 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9de663c7d1cbb0e9
+2026-10-24 23:29:13.154 [info] ERROR: logging before google.Init: I1024 23:29:13.153966   59789 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x4745a99a93dd20b9
+2026-10-24 23:29:14.164 [info] ERROR: logging before google.Init: I1024 23:29:14.164102   59768 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xb7b3d0b9c0c2e8d
+2026-10-24 23:35:12.921 [info] ERROR: logging before google.Init: I1024 23:35:12.920825   61257 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x87bbbe51836f92a3
+2026-10-24 23:35:13.784 [info] ERROR: logging before google.Init: I1024 23:35:13.782782   61239 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x41610082bdb406d4
+2026-10-24 23:38:40.573 [info] (Antigravity IDE) 2026-10-24 23:38:40.573 [INFO]: [Terminal] Command completed: pnpm dev exit code 143
+2026-10-24 23:41:11.753 [info] ERROR: logging before google.Init: I1024 23:41:11.752597   62728 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xfdf123fa60eb9536
+2026-10-24 23:41:13.245 [info] ERROR: logging before google.Init: I1024 23:41:13.244830   62759 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x855925dd8b8be2c0
+2026-10-24 23:47:11.317 [info] ERROR: logging before google.Init: I1024 23:47:11.316849   63632 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xa25b5e9278ae3f4a
+2026-10-24 23:47:12.431 [info] ERROR: logging before google.Init: I1024 23:47:12.431353   64177 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xc0e503b44706cf6d
+2026-10-24 23:51:41.806 [info] (Antigravity IDE) 2026-10-24 23:51:41.806 [INFO]: [Terminal] Command completed:  GET /dashboard 200 in 238ms (next.js: 5ms, application-code: 233ms)
+✓ Compiled in 320ms
+✓ Compiled in 102ms
+✓ Compiled in 89ms
+ GET /dashboard 200 in 216ms (next.js: 1.9ms, application-code: 214ms)
+ GET /dashboard 200 in 417ms (next.js: 2ms, application-code: 415ms)
+^C^C
+[ELIFECYCLE] Command failed.
+Terminated exit code 143
+2026-10-24 23:53:11.317 [info] ERROR: logging before google.Init: I1024 23:53:11.316776   65692 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x4e2336beabde4214
+2026-10-24 23:53:11.854 [info] ERROR: logging before google.Init: I1024 23:53:11.853710   65600 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xca44b1d07b854855
+2026-10-24 23:59:11.469 [info] ERROR: logging before google.Init: I1024 23:59:11.469484   67187 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5bf6525df72cb89
+2026-10-24 23:59:12.107 [info] ERROR: logging before google.Init: I1024 23:59:12.106850   67202 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x2a57260d91bddf04
+2026-10-25 00:03:55.157 [info] ERROR: logging before google.Init: E1025 00:03:55.156676   68335 errorreport.go:223] while decoding file, failed to detect charset with sufficient confidence
+2026-10-25 00:04:12.896 [info] ERROR: logging before google.Init: I1025 00:04:12.895456   68456 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x13ea6a6bdfc1ac22
+2026-10-25 00:06:10.570 [info] ERROR: logging before google.Init: W1025 00:06:10.562873   68939 cache.go:56] Cache(fetchBAICAdminControls): Singleflight refresh failed: admin controls not applicable
+2026-10-25 00:06:10.573 [info] ERROR: logging before google.Init: E1025 00:06:10.572376   68939 errorreport.go:223] admin controls not applicable
+2026-10-25 00:06:10.579 [info] ERROR: logging before google.Init: W1025 00:06:10.578155   68939 cache.go:79] Failed to refresh cache in background: admin controls not applicable
+2026-10-25 00:06:11.862 [info] ERROR: logging before google.Init: I1025 00:06:11.861792   68937 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9efe2e252ffaa8c1
+2026-10-25 00:06:12.887 [info] ERROR: logging before google.Init: I1025 00:06:12.883872   68935 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x154b5f630d0ab7f6
+2026-10-25 00:12:11.405 [info] ERROR: logging before google.Init: I1025 00:12:11.404551   70469 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x181ef363ad455510
+2026-10-25 00:12:12.185 [info] ERROR: logging before google.Init: I1025 00:12:12.178482   70433 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xa5a523b597ace49b
+2026-10-25 00:18:11.910 [info] ERROR: logging before google.Init: I1025 00:18:11.909802   71902 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xea64cf240fec9fbe
+2026-10-25 00:18:11.998 [info] ERROR: logging before google.Init: I1025 00:18:11.998041   71927 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7e34128b001fcca6
+2026-10-25 00:24:11.725 [info] ERROR: logging before google.Init: I1025 00:24:11.725604   73407 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x2aa86c01810bf059
+2026-10-25 00:24:12.749 [info] ERROR: logging before google.Init: I1025 00:24:12.748739   73408 http_helpers.go:228] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x1cbc7c060976a344

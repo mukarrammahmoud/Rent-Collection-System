@@ -1,0 +1,8 @@
+[Info  - 7:25:37 PM] Default version of Prisma 'prisma-schema-wasm': 3c6e192761c0362d496ed980de936e2f3cebcd3a
+[Info  - 7:25:37 PM] Extension name @prisma/language-server with version 31.13.0
+[Info  - 7:25:37 PM] Prisma Engines version: 7.8.0-6.3c6e192761c0362d496ed980de936e2f3cebcd3a
+[Info  - 7:25:37 PM] Prisma CLI version: 7.9.0-dev.4
+running lint() from prisma-schema-wasm
+[Info  - 7:26:01 PM] Configuration changed.
+running lint() from prisma-schema-wasm
+running lint() from prisma-schema-wasm

@@ -1,15 +1,29 @@
 'use client'
 
 import { useState } from 'react'
+import { createSupabaseBrowserClient } from '@/lib/supabase-browser'
 
 interface PaymentActionsProps {
   paymentId: string
   status: string
+  isManager?: boolean
 }
 
-export function PaymentActions({ paymentId, status }: PaymentActionsProps) {
+export function PaymentActions({
+  paymentId,
+  status,
+  isManager = true,
+}: PaymentActionsProps) {
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
+
+  const getAuthHeaders = async () => {
+    const supabase = createSupabaseBrowserClient()
+    const {
+      data: { session },
+    } = await supabase.auth.getSession()
+    return session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}
+  }
 
   const handleApprove = async () => {
     if (!confirm('Are you sure you want to approve this payment? Funds will be allocated across outstanding invoices.')) {
@@ -19,8 +33,10 @@ export function PaymentActions({ paymentId, status }: PaymentActionsProps) {
     setErrorMsg(null)
 
     try {
+      const authHeaders = await getAuthHeaders()
       const res = await fetch(`/api/payments/${paymentId}/approve`, {
         method: 'POST',
+        headers: authHeaders,
       })
       const data = await res.json()
       if (!res.ok) {
@@ -47,9 +63,10 @@ export function PaymentActions({ paymentId, status }: PaymentActionsProps) {
     setErrorMsg(null)
 
     try {
+      const authHeaders = await getAuthHeaders()
       const res = await fetch(`/api/payments/${paymentId}/reject`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...authHeaders },
         body: JSON.stringify({ reason: reason.trim() }),
       })
       const data = await res.json()
@@ -77,9 +94,10 @@ export function PaymentActions({ paymentId, status }: PaymentActionsProps) {
     setErrorMsg(null)
 
     try {
+      const authHeaders = await getAuthHeaders()
       const res = await fetch(`/api/payments/${paymentId}/void`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...authHeaders },
         body: JSON.stringify({ reason: reason.trim() }),
       })
       const data = await res.json()
@@ -93,6 +111,23 @@ export function PaymentActions({ paymentId, status }: PaymentActionsProps) {
       setErrorMsg(err instanceof Error ? err.message : 'Error voiding payment')
       setLoading(false)
     }
+  }
+
+  // If user is not manager, render clean status indicators without actionable buttons
+  if (!isManager) {
+    if (status === 'pending_verification') {
+      return <span className="text-[11px] text-amber-500 font-medium">Pending Manager Review</span>
+    }
+    if (status === 'approved') {
+      return <span className="text-[11px] text-emerald-500 font-medium">Approved</span>
+    }
+    if (status === 'rejected') {
+      return <span className="text-[11px] text-rose-500 font-medium">Rejected</span>
+    }
+    if (status === 'voided') {
+      return <span className="text-[11px] text-slate-400 font-medium">Voided</span>
+    }
+    return <span className="text-[11px] text-slate-400 italic">No actions</span>
   }
 
   if (status === 'rejected' || status === 'voided') {

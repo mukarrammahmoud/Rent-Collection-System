@@ -1,14 +1,21 @@
 'use client'
 
 import { useState } from 'react'
+import { createSupabaseBrowserClient } from '@/lib/supabase-browser'
 
 interface RecordPaymentModalProps {
   leaseId: string
   unitName: string
+  isAllowed?: boolean
 }
 
-export function RecordPaymentModal({ leaseId, unitName }: RecordPaymentModalProps) {
+export function RecordPaymentModal({
+  leaseId,
+  unitName,
+  isAllowed = true,
+}: RecordPaymentModalProps) {
   const [isOpen, setIsOpen] = useState(false)
+  if (!isAllowed) return null
   const [method, setMethod] = useState<'cash' | 'bank_transfer'>('bank_transfer')
   const [amountRinggit, setAmountRinggit] = useState('')
   const [slipFile, setSlipFile] = useState<File | null>(null)
@@ -37,8 +44,17 @@ export function RecordPaymentModal({ leaseId, unitName }: RecordPaymentModalProp
         formData.append('slip', slipFile)
       }
 
+      const supabase = createSupabaseBrowserClient()
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+      const token = session?.access_token
+
       const res = await fetch(`/api/leases/${leaseId}/payments`, {
         method: 'POST',
+        headers: {
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: formData,
       })
 
