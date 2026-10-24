@@ -17,7 +17,7 @@ export function PaymentActions({
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
-  const getAuthHeaders = async () => {
+  const getAuthHeaders = async (): Promise<Record<string, string>> => {
     const supabase = createSupabaseBrowserClient()
     const {
       data: { session },
