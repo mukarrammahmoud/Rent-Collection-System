@@ -21,7 +21,10 @@ npx supabase db reset
 # 4. Seed the database with test organizations, users, and leases
 npm run seed
 
-# 5. Launch the development server
+# 5. Build for production (verifies zero errors)
+npm run build
+
+# 6. Launch the development server
 npm run dev
 ```
 

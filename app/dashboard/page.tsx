@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { getPrisma } from '@/lib/auth'
 
+export const instant = false
+
 export default async function DashboardPage() {
   const prisma = getPrisma()
 

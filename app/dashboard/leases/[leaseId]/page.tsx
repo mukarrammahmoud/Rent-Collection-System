@@ -3,6 +3,10 @@ import Link from 'next/link'
 import { getPrisma } from '@/lib/auth'
 import { invoiceStatus } from '@/lib/billing'
 import { TenantPayButton } from '@/components/tenant-pay-button'
+import { RecordPaymentModal } from '@/components/record-payment-modal'
+import { PaymentActions } from '@/components/payment-actions'
+
+export const instant = false
 
 interface PageProps {
   params: Promise<{ leaseId: string }>
@@ -117,15 +121,20 @@ export default async function TenantLeaseDashboardPage({ params }: PageProps) {
           </p>
         </div>
 
-        {/* Outstanding Balance & Pay CTA */}
-        <div className="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700 w-full md:w-auto">
-          <div className="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">
-            Total Outstanding Balance
+        {/* Actions: Tenant Pay & Staff/Manager Offline Record */}
+        <div className="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700 w-full md:w-auto flex flex-col gap-3">
+          <div>
+            <div className="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">
+              Total Outstanding Balance
+            </div>
+            <div className="text-2xl font-black text-slate-900 dark:text-white">
+              {formatSenToRinggit(outstandingSen)}
+            </div>
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white mb-3">
-            {formatSenToRinggit(outstandingSen)}
+          <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-200 dark:border-slate-700">
+            <TenantPayButton leaseId={lease.id} outstandingSen={outstandingSen.toString()} />
+            <RecordPaymentModal leaseId={lease.id} unitName={lease.unit.name} />
           </div>
-          <TenantPayButton leaseId={lease.id} outstandingSen={outstandingSen.toString()} />
         </div>
       </div>
 
@@ -230,10 +239,13 @@ export default async function TenantLeaseDashboardPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Payment History Section */}
+      {/* Payment History & Management Section */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
         <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white">Payment Ledger & Receipts</h2>
+          <div>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">Payment Ledger & Receipts</h2>
+            <p className="text-xs text-slate-500">Includes manager approval, rejection, and void controls</p>
+          </div>
           <span className="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
             {lease.payments.length} Payments Recorded
           </span>
@@ -253,7 +265,8 @@ export default async function TenantLeaseDashboardPage({ params }: PageProps) {
                   <th className="py-3 px-4 text-right">Amount</th>
                   <th className="py-3 px-4 text-right">Unapplied</th>
                   <th className="py-3 px-4 text-center">Status</th>
-                  <th className="py-3 px-4">Reference / Gateway</th>
+                  <th className="py-3 px-4">Reference / Slip</th>
+                  <th className="py-3 px-4">Manager Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -284,6 +297,9 @@ export default async function TenantLeaseDashboardPage({ params }: PageProps) {
                       </td>
                       <td className="py-3 px-4 text-slate-500 font-mono text-[11px]">
                         {p.gatewayBillId || p.slipPath || 'Manual Record'}
+                      </td>
+                      <td className="py-3 px-4">
+                        <PaymentActions paymentId={p.id} status={p.status} />
                       </td>
                     </tr>
                   )

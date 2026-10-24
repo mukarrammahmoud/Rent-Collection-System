@@ -1,5 +1,7 @@
-import { redirect } from 'next/navigation'
+import DashboardPage from './dashboard/page'
+
+export const instant = false
 
 export default function Home() {
-  redirect('/dashboard')
+  return <DashboardPage />
 }

@@ -80,34 +80,44 @@ export async function POST(
 
     const { amountSen, method, receivedAt } = parsed.data
 
-    // 110% overpayment cap check
-    // Cap = sum of all invoice amounts for the lease × 110%
+    // CONTRACT.md Cap Calculation:
+    // Max allowed payment = (Sum of lease invoice amounts - Sum of all active allocations on those invoices - Sum of other pending_verification payments on this lease)
     const invoiceAgg = await prisma.invoice.aggregate({
       where: { leaseId, orgId: caller.orgId },
       _sum: { amountSen: true },
     })
-    const totalDue = invoiceAgg._sum.amountSen ?? BigInt(0)
+    const totalInvoiced = invoiceAgg._sum.amountSen ?? BigInt(0)
 
-    // Total already recorded payments (pending + approved, not rejected/voided)
-    const existingPayments = await prisma.payment.aggregate({
+    const allocationAgg = await prisma.paymentAllocation.aggregate({
       where: {
-        leaseId,
+        invoice: { leaseId },
         orgId: caller.orgId,
-        status: { in: ['pending_verification', 'approved'] },
       },
       _sum: { amountSen: true },
     })
-    const alreadyRecorded = existingPayments._sum.amountSen ?? BigInt(0)
+    const totalAllocated = allocationAgg._sum.amountSen ?? BigInt(0)
 
-    const cap = (totalDue * BigInt(110)) / BigInt(100)
-    if (alreadyRecorded + BigInt(amountSen) > cap) {
+    const pendingAgg = await prisma.payment.aggregate({
+      where: {
+        leaseId,
+        orgId: caller.orgId,
+        status: 'pending_verification',
+      },
+      _sum: { amountSen: true },
+    })
+    const totalPending = pendingAgg._sum.amountSen ?? BigInt(0)
+
+    const remainingUnpaid = totalInvoiced - totalAllocated - totalPending
+    const maxAllowedPayment = remainingUnpaid > BigInt(0) ? remainingUnpaid : BigInt(0)
+
+    if (BigInt(amountSen) > maxAllowedPayment) {
       // Clean up uploaded file if cap exceeded
       if (uploadedSlipPath) {
         const supabase = await createSupabaseServerClient()
         await supabase.storage.from('payment-slips').remove([uploadedSlipPath])
       }
       return Response.json(
-        { error: 'Payment would exceed the 110% overpayment cap' },
+        { error: 'Payment exceeds the remaining unpaid balance for this lease' },
         { status: 422 },
       )
     }

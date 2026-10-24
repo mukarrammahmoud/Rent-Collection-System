@@ -2,10 +2,16 @@
  * /payments/return
  * Gateway settlement return page.
  * Handles redirection after gateway payment (simulated or real).
+ *
+ * Adheres to CONTRACT.md Section 5 & 7:
+ *   - Idempotent: Primary payment creator is the webhook (/api/webhooks/gateway).
+ *   - If the bill is already marked paid or payment exists, do NOT duplicate.
  */
 import Link from 'next/link'
 import { getPrisma } from '@/lib/auth'
 import { allocatePayment } from '@/lib/allocation'
+
+export const instant = false
 
 interface PageProps {
   searchParams: Promise<{
@@ -44,56 +50,87 @@ export default async function GatewayReturnPage({ searchParams }: PageProps) {
       if (bill) {
         leaseId = bill.leaseId
 
-        // If gateway return indicates success and bill is pending, complete instant settlement
-        if (isSuccess && bill.status === 'pending') {
-          await prisma.$transaction(async (tx) => {
-            await tx.gatewayBill.update({
-              where: { id: bill!.id },
-              data: { status: 'paid' },
-            })
+        // Check if an approved payment already exists for this gateway bill
+        const existingPayment = await prisma.payment.findUnique({
+          where: { gatewayBillId: bill.id },
+        })
 
-            const payment = await tx.payment.create({
-              data: {
-                orgId: bill!.orgId,
-                leaseId: bill!.leaseId,
-                amountSen: bill!.amountSen,
-                unappliedSen: bill!.amountSen,
-                method: 'online',
-                status: 'approved',
-                gatewayBillId: bill!.id,
-                receivedAt: new Date(),
-              },
-            })
+        // Idempotency: If webhook already marked it paid or created the payment, do NOT duplicate
+        if (bill.status === 'paid' || existingPayment) {
+          // Already settled by webhook — render confirmation safely
+        } else if (isSuccess && bill.status === 'pending') {
+          // Fallback settlement for direct simulated return flows if webhook was bypassed
+          try {
+            await prisma.$transaction(async (tx) => {
+              // Concurrency safety check inside transaction
+              const freshBill = await tx.gatewayBill.findUnique({
+                where: { id: bill!.id },
+              })
+              const freshPayment = await tx.payment.findUnique({
+                where: { gatewayBillId: bill!.id },
+              })
 
-            await allocatePayment(tx, payment.id)
+              if (freshBill?.status === 'paid' || freshPayment) {
+                return // Webhook processed concurrently
+              }
 
-            await tx.auditLog.create({
-              data: {
-                orgId: bill!.orgId,
-                actorId: bill!.lease.tenant.userId,
-                action: 'payment.online_completed',
-                entityId: payment.id,
-                details: {
-                  billId: bill!.id,
-                  amountSen: bill!.amountSen.toString(),
+              await tx.gatewayBill.update({
+                where: { id: bill!.id },
+                data: { status: 'paid' },
+              })
+
+              const payment = await tx.payment.create({
+                data: {
+                  orgId: bill!.orgId,
+                  leaseId: bill!.leaseId,
+                  amountSen: bill!.amountSen,
+                  unappliedSen: bill!.amountSen,
                   method: 'online',
+                  status: 'approved',
+                  gatewayBillId: bill!.id,
+                  receivedAt: new Date(),
+                },
+              })
+
+              await allocatePayment(tx, payment.id)
+
+              await tx.auditLog.create({
+                data: {
+                  orgId: bill!.orgId,
+                  actorId: bill!.lease.tenant.userId,
+                  action: 'payment.online_completed',
+                  entityId: payment.id,
+                  details: {
+                    billId: bill!.id,
+                    amountSen: bill!.amountSen.toString(),
+                    method: 'online',
+                  },
+                },
+              })
+            })
+
+            // Refresh bill state
+            bill = await prisma.gatewayBill.findUnique({
+              where: { id: billId },
+              include: {
+                lease: {
+                  include: {
+                    unit: true,
+                    tenant: true,
+                  },
                 },
               },
             })
+          } catch (e) {
+            console.error('Error settling bill in return handler:', e)
+          }
+        } else if (!isSuccess && bill.status === 'pending') {
+          // Update bill status to failed if gateway returned cancellation/failure
+          await prisma.gatewayBill.update({
+            where: { id: bill.id },
+            data: { status: 'failed' },
           })
-
-          // Refresh bill status
-          bill = await prisma.gatewayBill.findUnique({
-            where: { id: billId },
-            include: {
-              lease: {
-                include: {
-                  unit: true,
-                  tenant: true,
-                },
-              },
-            },
-          })
+          bill.status = 'failed'
         }
       }
     } catch (err) {
