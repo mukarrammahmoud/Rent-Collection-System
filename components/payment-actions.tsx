@@ -12,7 +12,7 @@ interface PaymentActionsProps {
 export function PaymentActions({
   paymentId,
   status,
-  isManager = true,
+  isManager = false,
 }: PaymentActionsProps) {
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
