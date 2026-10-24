@@ -1,138 +1,120 @@
 # Rent Collection System
 
-A full-stack rent collection platform built with Next.js 16 (App Router), Prisma, and Supabase. Manages organizations, leases, invoices, and multi-method payments with a complete audit trail.
+An enterprise multi-tenant rent collection and ledger platform built with **Next.js 16 (App Router)**, **Prisma**, and **Supabase (PostgreSQL + RLS + Storage)**. Features pure mathematical billing schedule generation, deterministic waterfall payment allocation, tamper-proof append-only audit trails, and multi-tenant isolation.
 
 ---
 
-## Prerequisites
+## Quick Start & Setup Instructions
 
-- Node.js 20+
-- pnpm 11+
-- Docker (for Supabase local)
-- Supabase CLI
+Follow these exact steps to run the application locally:
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start local Supabase containers (requires Docker)
+npx supabase start
+
+# 3. Reset database and run all SQL migrations
+npx supabase db reset
+
+# 4. Seed the database with test organizations, users, and leases
+npm run seed
+
+# 5. Launch the development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application and portfolio dashboard.
 
 ---
 
-## Setup
+## Test Personas & Credentials
 
-### 1. Start Supabase locally
+All seeded test accounts share the password: **`Password123!`**.  
+Use the floating **Persona Switcher** in the top navigation bar to switch between personas instantly without manual credential entry.
 
-```bash
-supabase start
-```
+### Northwind Properties (`org_id: 00000000-0000-0000-0000-000000000001`)
 
-### 2. Apply migrations
+| Persona | Role | Email | Scope / Details |
+| :--- | :--- | :--- | :--- |
+| **Manager** | `manager` | `manager@northwind.test` | Organization-wide administration, payment approvals, voiding, lease creation |
+| **Staff** | `staff` | `staff@northwind.test` | Payment recording with slip upload, collections reporting |
+| **Aisyah Rahman** | `tenant` | `aisyah@northwind.test` | Unit `A-12-3` (`2026-01-31` to `2026-07-15`), Rent: RM 1,500.00, Deposit: RM 3,000.00 |
+| **Ben Lim** | `tenant` | `ben@northwind.test` | Unit `B-05-1` (`2026-01-01` to `2026-04-15`), Rent: RM 1,000.29, No Deposit |
+| **Probe Tenant** | `tenant` | `probe@northwind.test` | Unit `C-01-7` (`2026-02-28` to `2027-02-27`), Rent: RM 2,000.00, Deposit: RM 4,000.00 |
+| *Vacant Unit* | — | — | Unit `D-03-2` (available for new lease creation) |
 
-```bash
-supabase db push
-# or
-supabase migration up
-```
+### Beta Realty (`org_id: 00000000-0000-0000-0000-000000000002`)
 
-### 3. Install dependencies
-
-```bash
-pnpm install
-```
-
-### 4. Configure environment
-
-Copy `.env.example` → `.env` (or use the defaults which match `supabase start` output):
-
-```
-DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
-DIRECT_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
-NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
-NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key from supabase start>
-SUPABASE_SERVICE_ROLE_KEY=<service role key from supabase start>
-GATEWAY_X_SIGNATURE_KEY=secret-signature-key
-```
-
-### 5. Generate Prisma client
-
-```bash
-pnpm exec prisma generate
-```
-
-### 6. Seed the database
-
-```bash
-pnpm seed
-```
-
-This will create:
-- 2 organizations (Northwind Properties, Beta Realty)
-- 7 users with password `Password123!`
-- 4 leases with dynamically generated invoice schedules
-- Sample payments with FIFO waterfall allocation
-- Private `payment-slips` storage bucket
-
-### 7. Run the development server
-
-```bash
-pnpm dev
-```
-
-Visit [http://localhost:3000](http://localhost:3000).
+| Persona | Role | Email | Scope / Details |
+| :--- | :--- | :--- | :--- |
+| **Manager** | `manager` | `manager@beta.test` | Isolated Beta Realty administration |
+| **Chen Wei** | `tenant` | `chen@beta.test` | Unit `KL-1` (`2026-03-15` to `2027-03-14`), Rent: RM 2,200.00, Deposit: RM 4,400.00 |
 
 ---
 
-## Architecture Overview
+## Testing & Verification Commands
 
-### Tech Stack
+```bash
+# Verify TypeScript compilation (zero errors)
+npx tsc --noEmit
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 16 (App Router) |
-| Database | PostgreSQL (via Supabase) |
-| ORM | Prisma 7 with `@prisma/adapter-pg` |
-| Auth | Supabase Auth (Bearer + SSR cookies) |
-| Storage | Supabase Storage (`payment-slips` bucket) |
-| Validation | Zod 4 |
+# Production Next.js build verification
+npm run build
 
-### Key Design Decisions
-
-**Money as BigInt (sen)**: All monetary values are stored as `bigint` integers in sen (1 MYR = 100 sen). This eliminates floating-point precision errors entirely.
-
-**Pure billing module** (`lib/billing.ts`): Zero external dependencies, no I/O. All date math uses the Howard Hinnant civil-days algorithm so results are identical regardless of the process's local timezone (tested under UTC, Asia/Kuala_Lumpur, America/New_York).
-
-**FIFO waterfall allocation** (`lib/allocation.ts`): When a payment is approved, it is allocated across unpaid invoices in strict priority order: due date ASC → deposit before rent → period index ASC → id ASC. The algorithm is idempotent and concurrency-safe.
-
-**Dual-layer authorization**: Every request is validated at the Route Handler level (Bearer token or SSR session → `lib/auth.ts`) AND enforced again by PostgreSQL Row Level Security policies in the migration.
-
-**Append-only audit log**: The `audit_log` table has a trigger that raises an exception on UPDATE/DELETE, and UPDATE/DELETE privileges are revoked from all roles. Every state-changing operation writes an immutable audit entry.
-
-### Trade-offs
-
-- **No floating point for proration**: The proration formula uses integer arithmetic (`Math.round((rent × days) / total)`) rather than a Decimal library to keep `lib/billing.ts` dependency-free.
-- **Prisma singleton in Route Handlers**: A module-level Prisma client is reused across requests in the same Node.js process. This avoids connection exhaustion but means the first cold-start request pays the connection cost.
-- **Service-role client only in webhook**: The gateway webhook uses the admin client to bypass RLS because it is an external caller without a user JWT. The webhook is secured instead by HMAC-SHA256 signature verification.
+# Run deterministic database seeding
+npm run seed
+```
 
 ---
 
-## API Reference
+## Architecture & Engineering Design
 
-| Method | Route | Auth | Description |
-|---|---|---|---|
-| POST | `/api/leases` | Manager | Create lease + invoice schedule |
-| GET | `/api/leases/:leaseId` | Staff/Manager/Tenant | Lease detail with computed invoice status |
-| POST | `/api/leases/:leaseId/payments` | Staff/Manager | Record payment (cash, bank transfer) |
-| POST | `/api/leases/:leaseId/gateway-bills` | Lease Tenant | Create online payment gateway bill |
-| POST | `/api/payments/:paymentId/approve` | Manager | Approve + allocate payment |
-| POST | `/api/payments/:paymentId/reject` | Manager | Reject pending payment |
-| POST | `/api/payments/:paymentId/void` | Manager | Void approved payment |
-| GET | `/api/reports/collections` | Staff/Manager | Monthly collection report |
-| POST | `/api/webhooks/gateway` | Gateway (HMAC) | Payment gateway callback |
+### 1. Money Stored Strictly as BigInt Sen (No Floats)
+All monetary amounts are stored as PostgreSQL `bigint` and Prisma `BigInt` (1 MYR = 100 sen). Eliminates IEEE-754 floating-point drift across schedules, invoices, and payment allocations.
+
+### 2. Pure Billing Module (`lib/billing.ts`)
+- **Zero external dependencies**: Zero imports from React, Next.js, Prisma, or date libraries.
+- **Howard Hinnant civil calendar integer arithmetic**: Computes days since Unix epoch mathematically. Every $k$-th anchor is calculated as $(Y, M+k, D)$ and pinned to the target month's last day, preventing cumulative month-drift across any system timezone (`TZ=UTC`, `TZ=Asia/Kuala_Lumpur`, `TZ=America/New_York`).
+- **Proration formula**: $\lfloor \frac{\text{monthlyRentSen} \times \text{daysUsed}}{\text{fullPeriodDays}} + 0.5 \rfloor$.
+- **Dynamic invoice status resolver**: Correctly maps `paid`, `partially_paid`, `unpaid`, and `overdue` (evaluated strictly at 00:00:00 Malaysia Time following the due date).
+
+### 3. Deterministic Waterfall Allocation (`lib/allocation.ts`)
+- Waterfall ordering: `due_date ASC` $\rightarrow$ `kind ASC` ('deposit' before 'rent') $\rightarrow$ `period_index ASC` $\rightarrow$ `id ASC`.
+- Idempotency guard: Early exit inside isolated transaction if allocations exist for the payment, preventing duplicate credits from re-sent webhooks.
+
+### 4. Dual-Layer Authorization
+- **Layer 1 (Route Handlers):** `lib/auth.ts` inspects Bearer tokens or SSR session cookies, enforcing HTTP 401, 403, and 404 tenant isolation (hiding cross-org resources).
+- **Layer 2 (PostgreSQL RLS):** Supabase RLS policies enforce `auth.uid()` checks at the PostgreSQL engine level.
+
+### 5. Append-Only Audit Trail
+- `audit_log` table protected by a `BEFORE UPDATE OR DELETE` PostgreSQL trigger raising an exception.
+- Privileges `REVOKE UPDATE, DELETE ON audit_log FROM PUBLIC, anon, authenticated`.
+
+### 6. Payment Gateway Webhook Protocol (`POST /api/webhooks/gateway`)
+- Accepts `application/x-www-form-urlencoded`.
+- Signs payload with HMAC-SHA256 over ASCII-sorted keys concatenated with values and separated by `|`.
+- Idempotent execution: duplicate deliveries return 200 without side effects.
 
 ---
 
-## AI Disclosure
+## HTTP API Route Summary
 
-This project was developed with AI assistance (Antigravity IDE / Gemini). The AI was used to:
-- Implement `lib/billing.ts` with timezone-safe pure math and test it across 3 timezones
-- Generate the Prisma schema and SQL migrations with RLS policies
-- Write the seed script with deterministic UUIDs and payment allocation
-- Scaffold all Next.js 16 Route Handlers following the updated `params: Promise<...>` API
-- Write `lib/auth.ts` and `lib/supabase.ts` helper modules
+| Method & Route | Authorized Role | Description |
+| :--- | :--- | :--- |
+| `POST /api/leases` | Manager | Creates lease and scheduled invoices with overlap check |
+| `GET /api/leases/:leaseId` | Staff, Manager, Lease Tenant | Retrieves lease, tenant, unit, invoices, and payments |
+| `POST /api/leases/:leaseId/payments` | Staff, Manager | Records cash/transfer payment with 110% overpayment cap check |
+| `POST /api/payments/:paymentId/approve` | Manager | Approves pending payment, runs waterfall allocation |
+| `POST /api/payments/:paymentId/reject` | Manager | Rejects pending payment with required reason |
+| `POST /api/payments/:paymentId/void` | Manager | Voids approved payment, deletes allocations, and restores balance |
+| `POST /api/leases/:leaseId/gateway-bills` | Lease Tenant | Generates gateway bill for outstanding invoice balance |
+| `GET /api/reports/collections` | Staff, Manager | Aggregates approved monthly collections in MYT timezone |
+| `POST /api/webhooks/gateway` | Gateway | Secure webhook handler verifying HMAC signature and allocating |
 
-All generated code was reviewed for correctness against `CONTRACT.md`.
+---
+
+## AI Collaboration Disclosure
+
+Detailed documentation of AI assistance, models used (Claude Sonnet, Gemini Flash), engineering design prompts, and debugging sessions can be found in [`ai-logs/session-summary.md`](./ai-logs/session-summary.md).

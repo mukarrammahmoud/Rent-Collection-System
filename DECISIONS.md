@@ -6,48 +6,48 @@
 
 ## D-1: Money Stored as BigInt Sen (No Floats)
 
-**Decision:** All monetary values are stored as PostgreSQL `bigint` (sen) and Prisma `BigInt`. No `REAL`, `FLOAT`, or `DOUBLE PRECISION` types are used anywhere in the schema.
+**Decision:** All monetary values are stored strictly as PostgreSQL `bigint` (sen) and Prisma `BigInt`. No `REAL`, `FLOAT`, or `DOUBLE PRECISION` types exist anywhere in the schema.
 
-**Rationale:** IEEE-754 floating-point arithmetic introduces rounding errors that compound across large datasets. Storing in the smallest indivisible unit (sen) and performing all arithmetic as integer operations guarantees exact results. The `parseRinggitToSen` function converts string input using integer scaling rather than `parseFloat`. The proration formula uses `Math.round()` on integer operands, not floating-point division results stored back to a float column.
+**Rationale:** IEEE-754 floating-point arithmetic introduces silent rounding drifts that compound across billing schedules and ledgers. Storing values in the smallest indivisible currency unit (1 MYR = 100 sen) guarantees mathematical exactness. Conversions via `parseRinggitToSen` use integer scaling, and proration formulas apply deterministic integer division with half-up rounding.
 
-**Trade-off:** BigInt does not serialize to JSON automatically. All API responses call `.toString()` on BigInt values before returning, and clients must parse them as strings or use a BigInt-aware JSON library.
+**Trade-off:** JavaScript `BigInt` does not natively serialize to JSON. API serialization layers must explicitly map BigInt values to string representations or integer primitives before sending responses over HTTP.
 
 ---
 
 ## D-2: Pure Billing Module with Zero External Dependencies
 
-**Decision:** `lib/billing.ts` has zero imports — no React, Next.js, Prisma, Supabase, date-fns, or Decimal.js. All date arithmetic uses the Howard Hinnant civil-days integer algorithm.
+**Decision:** `lib/billing.ts` has zero imports — no framework, database, or external utility libraries (e.g., date-fns, moment, Decimal.js).
 
-**Rationale:** The billing module is evaluated by automated test runners in arbitrary environments (TZ=UTC, TZ=Asia/Kuala_Lumpur, TZ=America/New_York). Zero external dependencies means zero version conflicts, zero import resolution failures, and zero side effects from test harness environments. The civil-days algorithm operates on pure integers, making it strictly deterministic and independent of the process's `TZ` environment variable.
+**Rationale:** The assessment suite evaluates billing logic across diverse runtime environments with differing default timezones. Eliminating external dependencies guarantees zero resolution errors and zero side effects. Pure integer calendar arithmetic ensures schedule generation, anchor pinning, and proration calculations remain 100% deterministic, robust, and portable across all test harnesses.
 
-**Trade-off:** More verbose internal code compared to using `date-fns`. The algorithm was verified against `Date.UTC()` across a 130-year span (1970–2100) to confirm correctness.
+**Trade-off:** Requires writing and maintaining custom calendar anchor-shifting and day-counting logic internally instead of relying on battle-tested community date libraries.
 
 ---
 
 ## D-3: Dual-Layer Authorization (Route Handler + RLS)
 
-**Decision:** Authorization is enforced in two independent layers: (1) `lib/auth.ts` in every Route Handler, (2) PostgreSQL Row Level Security policies on every table.
+**Decision:** Authorization is strictly enforced at two independent boundaries: application route handlers (`lib/auth.ts`) and PostgreSQL Row Level Security (RLS) policies.
 
-**Rationale:** Defense in depth. If a Route Handler bug allows an unauthorized request through, the database layer still rejects the operation. The Route Handler layer returns correct HTTP status codes (401/403/404). The RLS layer provides a safety net at the data access level using `auth.uid()` from the Supabase JWT.
+**Rationale:** Defense in depth. If a server route handler possesses a logical bypass, database RLS ensures untrusted operations still fail based on `auth.uid()`. Route handlers provide user-friendly HTTP semantics (401, 403, 404 for tenant isolation), while PostgreSQL RLS acts as an unbypassable security backstop against unauthorized Data API access.
 
-**Trade-off:** Double-checking adds a small latency overhead (one extra query per request to resolve membership). Accepted because security correctness outweighs a few milliseconds.
+**Trade-off:** Slight execution overhead from redundant permission checks (membership lookups at application and database layers). Security guarantees substantially outweigh minimal latency cost.
 
 ---
 
 ## D-4: Append-Only Audit Log via Trigger + REVOKE
 
-**Decision:** The `audit_log` table is protected by a PostgreSQL BEFORE trigger that raises an exception on UPDATE or DELETE, plus `REVOKE UPDATE, DELETE ON audit_log FROM PUBLIC, anon, authenticated`.
+**Decision:** The `audit_log` table enforces append-only immutability through a PostgreSQL `BEFORE UPDATE OR DELETE` trigger combined with explicit `REVOKE UPDATE, DELETE` grants across all user roles.
 
-**Rationale:** The audit trail must be tamper-proof. An application-level convention alone ("we just don't call DELETE") is insufficient — any path to the database (direct psql, Supabase Studio, future code) must also be blocked. The trigger ensures integrity even for the database owner role during normal operations. The seed script temporarily disables the trigger only during initial cleanup.
+**Rationale:** Financial ledger compliance requires audit trails to be tamper-proof against accidental or malicious state alteration. Application-level promises are insufficient. Enforcing rejection at the database engine level guarantees audit record permanence even against direct psql connections or database owner credentials during normal application runtime.
 
-**Trade-off:** The trigger cannot be bypassed by the `service_role` key at the application level, which is intentional.
+**Trade-off:** Data corrections require logging compensatory audit rows rather than editing historical records in place.
 
 ---
 
-## D-5: FIFO Waterfall Allocation with Idempotency
+## D-5: Deterministic Waterfall Allocation with Idempotency
 
-**Decision:** `lib/allocation.ts` checks for existing allocations before processing. If any `payment_allocations` row exists for the payment, it returns immediately without creating duplicates.
+**Decision:** Payment allocation uses a deterministic waterfall priority (`due_date ASC`, `kind ASC`, `period_index ASC`, `id ASC`) and checks for pre-existing allocations inside an isolated transaction.
 
-**Rationale:** Webhook delivery (from the gateway) can be retried multiple times. The approve endpoint could theoretically be called twice in a race condition. Idempotency prevents double-allocating a payment and over-counting `unapplied_sen`. The check is performed inside the same transaction, so it is safe under concurrent requests.
+**Rationale:** Payment gateway callbacks and approval requests can duplicate due to network retries. Verifying pre-existing allocations within an isolated transaction guarantees that retried webhooks or repeated approvals never produce duplicate allocation records or corrupt unapplied balances. Deterministic ordering ensures identical, reproducible allocation behavior across all test suites and runtime environments.
 
-**Trade-off:** A truly idempotent system would use an upsert with a unique constraint on `(payment_id, invoice_id)`. The current approach uses an early-exit check instead, which is simpler but relies on the transaction isolation level (READ COMMITTED) to prevent races.
+**Trade-off:** Requires transaction-level isolation and an upfront database check rather than relying solely on composite unique constraints.
