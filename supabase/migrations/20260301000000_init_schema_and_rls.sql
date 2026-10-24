@@ -348,12 +348,13 @@ VALUES (
   'payment-slips',
   'payment-slips',
   false,
-  10485760, -- 10MB limit
-  ARRAY['image/jpeg', 'image/png', 'image/webp', 'application/pdf']
+  5242880, -- 5MB limit
+  ARRAY['image/png', 'image/jpeg', 'application/pdf']
 )
 ON CONFLICT (id) DO UPDATE SET
   public = false,
-  file_size_limit = 10485760;
+  file_size_limit = 5242880,
+  allowed_mime_types = ARRAY['image/png', 'image/jpeg', 'application/pdf'];
 
 -- Storage RLS: Manager and Staff of owning organization can upload (<org_id>/... pattern)
 CREATE POLICY "Staff and Manager can upload payment slips"
