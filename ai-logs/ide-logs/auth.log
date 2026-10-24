@@ -1,0 +1,25 @@
+2026-10-24 19:25:13.096 [info] [Auth] Auth state changed to: uninitialized
+2026-10-24 19:25:13.266 [info] [Auth] Auth state changed to: validatingLogin
+2026-10-24 19:25:13.267 [info] [Auth] Auth state changed to: validatingLogin
+2026-10-24 19:25:22.517 [info] [Auth] Auth state changed to: success
+2026-10-24 19:25:22.519 [info] [Auth] Auth state changed to: signedIn
+2026-10-24 19:25:22.520 [info] [Auth] Auth state changed to: signedIn
+2026-10-24 19:25:22.520 [info] [Auth] AntigravityAuthMainService initialized
+2026-10-24 19:30:13.584 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 19:30:13.589 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 19:30:16.347 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 19:30:16.349 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 20:25:15.769 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 20:25:15.852 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 21:20:15.515 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 21:20:15.518 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 22:15:15.773 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 22:15:15.782 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 22:15:17.201 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 22:15:17.203 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 22:20:24.636 [error] [Auth] Error refreshing user status: request to https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist failed, reason: socket hang up
+2026-10-24 23:10:16.752 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 23:10:16.817 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-24 23:25:28.134 [error] [Auth] Error refreshing user status: request to https://www.googleapis.com/oauth2/v2/userinfo failed, reason: socket hang up
+2026-10-25 00:05:15.826 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+2026-10-25 00:05:15.828 [info] OAuth token changed, executing antigravity.handleAuthRefresh

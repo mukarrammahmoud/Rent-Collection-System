@@ -1,0 +1,31 @@
+2026-10-24 19:25:30.548 [info] Render performance baseline is 65ms
+2026-10-24 19:25:52.441 [info] Render performance baseline is 54ms
+2026-10-24 19:26:09.631 [info] Render performance baseline is 70ms
+2026-10-24 20:44:20.827 [warning] Renderer reported VERY LONG TASK (1781ms), starting profiling session '51adff86-d5f8-4efb-85f7-229a4d619707'
+2026-10-24 22:48:59.500 [warning] Renderer reported VERY LONG TASK (1002ms), starting profiling session 'fd3350f6-c77c-46d2-86af-c558a52c33e5'
+2026-10-24 23:26:07.811 [warning] Renderer reported VERY LONG TASK (1000ms), starting profiling session '52ba91e9-1c8d-440d-bc84-4dd00c7e0e03'
+2026-10-24 23:26:14.095 [error] 
+	 at fn (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:4236:53192)
+	 at mhu (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:4236:52367)
+2026-10-24 23:26:14.097 [error] 
+	 at VTn (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:4236:57846)
+	 at Ahu (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:4236:58074)
+	 at cKo (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:4236:63804)
+	 at fn (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:4236:53192)
+2026-10-24 23:26:14.100 [error] 
+	 at getBoundingClientRect
+	 at _updateSelectionAndControlBoundsAfterRender (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:3014:6946)
+	 at onDidRender (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:3014:2272)
+	 at _flushAccumulatedAndRenderNow (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:3014:20689)
+	 at visibleRangeForPosition (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:3014:17863)
+	 at visibleRangeForPosition (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:2839:23372)
+	 at createMouseTargetFromHitTestPosition (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:2840:8305)
+	 at _hitTestViewLines (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:2840:5094)
+	 at _createMouseTarget (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:2840:2122)
+	 at createMouseTarget (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:2840:1738)
+	 at _createMouseTarget (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:2840:61523)
+	 at _onMouseMove (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:2840:62049)
+	 at (anonymous) (vscode-file://vscode-app/home/mokaram/Desktop/antigravity/Antigravity%20IDE/resources/app/out/vs/workbench/workbench.desktop.main.js:2836:27589)
+2026-10-24 23:26:14.110 [info] Stored profile to DISK 'file:///tmp/renderer-5f1a78.cpuprofile.json' 52ba91e9-1c8d-440d-bc84-4dd00c7e0e03
+2026-10-24 23:53:14.095 [warning] Renderer reported VERY LONG TASK (701ms), starting profiling session '62d6dc98-d0f5-4d92-9f6d-05dd877e5a5e'
+2026-10-25 00:03:18.441 [warning] Renderer reported VERY LONG TASK (1112ms), starting profiling session 'ed0a2af8-e127-448a-a073-a68457ab3418'
